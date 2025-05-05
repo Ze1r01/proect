@@ -44,6 +44,7 @@ char* view_file(const char* filename, const char* target_file) {
     free(buffer);
     fclose(file);
     return 0; 
+}
 void delete_file(const char* filename, const char* target_file) {
     FILE* file = fopen(filename, "r");
     if (!file) {
