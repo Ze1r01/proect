@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+//1.1
 FILE* open_or_create_file(const char* filename) {
-    FILE* file = fopen(filename, "a+"); // Открываем файл для чтения и записи
+    FILE* file = fopen(filename, "a+"); 
     if (!file) {
         perror("Ошибка открытия или создания файла");
         exit(EXIT_FAILURE);
     }
     return 0;
 }
-
+//1.2
 char* view_file(const char* filename, const char* target_file) {
     FILE* file = fopen(filename, "r");
     if (!file) {
@@ -42,7 +42,8 @@ char* view_file(const char* filename, const char* target_file) {
 
     free(buffer);
     fclose(file);
-    return 0; // Файл не найден
+    return 0; 
+    //1.3
 }
 void delete_file(const char* filename, const char* target_file) {
     FILE* file = fopen(filename, "r");
@@ -78,4 +79,50 @@ void delete_file(const char* filename, const char* target_file) {
 
     remove(filename);
     rename("temp.txt", filename);
+}
+
+//Добавление 2 функций
+
+//1.1
+void add_new_file(const char* filename, const char* new_file_content) {
+    FILE *file = fopen(filename, "a"); 
+    if (file == NULL) {
+        perror("Не удалось открыть файл");
+        return;
+    }
+    fprintf(file, "%s\n", new_file_content); 
+    fclose(file); 
+}
+//1.2
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void modify_file(const char* filename, const char* target_file, const char* new_content) {
+    FILE *file = fopen(filename, "r"); 
+    if (file == NULL) {
+        perror("Не удалось открыть файл");
+        return;
+    }
+
+    FILE *temp_file = fopen("temp.txt", "w"); 
+    if (temp_file == NULL) {
+        perror("Не удалось создать временный файл");
+        fclose(file);
+        return;
+    }
+
+    char buffer[256];
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        if (strcmp(buffer, target_file) == 0) {
+            fprintf(temp_file, "%s\n", new_content); 
+        } else {
+            fputs(buffer, temp_file); 
+        }
+    }
+
+    fclose(file);
+    fclose(temp_file);
+    remove(filename); 
+    rename("temp.txt", filename); 
 }
