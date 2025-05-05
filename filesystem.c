@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-//1.1
+#include <string.h>
+
 FILE* open_or_create_file(const char* filename) {
     FILE* file = fopen(filename, "a+"); 
     if (!file) {
@@ -9,7 +10,7 @@ FILE* open_or_create_file(const char* filename) {
     }
     return 0;
 }
-//1.2
+
 char* view_file(const char* filename, const char* target_file) {
     FILE* file = fopen(filename, "r");
     if (!file) {
@@ -43,7 +44,7 @@ char* view_file(const char* filename, const char* target_file) {
     free(buffer);
     fclose(file);
     return 0; 
-    //1.3
+    
 }
 void delete_file(const char* filename, const char* target_file) {
     FILE* file = fopen(filename, "r");
@@ -81,9 +82,7 @@ void delete_file(const char* filename, const char* target_file) {
     rename("temp.txt", filename);
 }
 
-//Добавление 2 функций
 
-//1.1
 void add_new_file(const char* filename, const char* new_file_content) {
     FILE *file = fopen(filename, "a"); 
     if (file == NULL) {
@@ -93,10 +92,9 @@ void add_new_file(const char* filename, const char* new_file_content) {
     fprintf(file, "%s\n", new_file_content); 
     fclose(file); 
 }
-//1.2
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 void modify_file(const char* filename, const char* target_file, const char* new_content) {
     FILE *file = fopen(filename, "r"); 
