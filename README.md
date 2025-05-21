@@ -42,3 +42,23 @@
 - const char* new_content (строка) - Новое содержимое для этого файла.  
 Возвращает:  
 - void - Ничего не возвращает.
+
+# Библиотека для работы с файловой системой
+
+Эта библиотека предоставляет простой интерфейс для основных операций с файлами в C.
+
+## Функции
+
+- `create_file(const char* filename)` - создает новый файл
+- `delete_file(const char* filename)` - удаляет файл
+- `write_to_file(const char* filename, const char* data)` - записывает данные в файл
+- `read_from_file(const char* filename)` - читает данные из файла
+- `file_exists(const char* filename)` - проверяет существование файла
+
+## Как подключить библиотеку
+
+1. Скопируйте файлы `filesystem.h` и `filesystem.c` в ваш проект
+2. Включите заголовочный файл в ваш код:
+
+```c
+#include "filesystem.h"
